@@ -37,7 +37,6 @@ function query($sql) {
 	return mysqli_query($connection, $sql);
 }
 
-
 function confirm($result){
 	global $connection;
 
@@ -46,20 +45,28 @@ function confirm($result){
 	}
 }
 
-
 function escape_string($string){
 	global $connection;
 	return mysqli_real_escape_string($connection, $string);
 }
 
-
-
 function fetch_array($result){
 	return mysqli_fetch_array($result);
 }
 
+function uuid() {
+	$data = openssl_random_pseudo_bytes(16);
+	assert(strlen($data) == 16);
+	
+	$data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
+	$data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+	
+	return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
 
-/****************************FRONT END FUNCTIONS************************/
+/************************ END OF HELPER FUNCTIONS ************************/
+
+/**************************** FRONT END FUNCTIONS ************************/
 function login_user(){
 	if(isset($_POST['submit'])){
 		$username = escape_string($_POST['username']);
@@ -102,9 +109,11 @@ function send_message() {
 	}
 }
 
+/**************************** END OF FRONT END FUNCTIONS ************************/
+
 /****************************BACK END FUNCTIONS************************/
 
-/************************admin users***********************/
+// Admin Users
 
 function display_users() {
 	$category_query = query("SELECT * FROM users");
@@ -130,7 +139,6 @@ function display_users() {
 	}
 }
 
-
 function add_user() {
 	if(isset($_POST['add_user'])) {
 	$username   = escape_string($_POST['username']);
@@ -145,4 +153,5 @@ function add_user() {
 	redirect("index.php?users");
 	}
 }
+/**************************** END OF BACK END FUNCTIONS ************************/
 ?>
