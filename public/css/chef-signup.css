@@ -1,33 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background: #ecf0f3;
-}
-
-/* Puts the form in the center both horizontally and vertically. Sets its height to 100% of the viewport's height */
-
-.signupFrm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .form {
-    background-color: #ecf0f3;
-    width: 400px;
-    border-radius: 8px;
-    padding: 20px 40px;
-    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
-  }
-  
   .title {
     font-size: 50px;
     margin-bottom: 50px;
@@ -71,7 +43,7 @@ body {
     top: 15px;
     left: 15px;
     padding: 0 4px;
-    background-color: #ecf0f3;
+    background-color: #fff;
     color: rgb(144, 140, 140);
     font-size: 16px;
     transition: 0.5s;

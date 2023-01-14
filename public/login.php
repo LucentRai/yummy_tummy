@@ -1,3 +1,25 @@
+<?php
+	require_once("../resources/config.php");
+
+	if (isset($_POST['user-login'])){
+		$username = escape_string($_POST['username']);
+		$user_password = escape_string($_POST['password']);
+		$query = query("SELECT * FROM users WHERE username = '{$username}'");
+		confirm($query);
+
+		if (mysqli_num_rows($query) == 0){	// username does not match any records
+			set_message("Username or password is incorrect.");
+			unset($_POST['user-login']);
+			redirect("login.php");
+		}
+		
+		$row = mysqli_fetch_array($query);
+		if (password_verify($user_password, $row['password_hash'])){
+			$_SESSION['user'] = $row['username'];
+			redirect("index.php");
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

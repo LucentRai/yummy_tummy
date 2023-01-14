@@ -1,6 +1,9 @@
+<?php
+	require_once("../resources/config.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +20,8 @@
 
 	<!-- css  -->
 	<link href="./css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="./css/chef-login.css" />
+  <link rel="stylesheet" href="./css/chef-signup.css">
 
 	<!-- bootstrap css -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,6 +35,97 @@
 </head>
 
 <body>
+<!-- Login modal box -->
+	<input type="checkbox" id="show-hide-form" hidden>
+	<div id="overlay" onclick="hideLoginForm()">
+	</div>
+	<div class="wrapper" id="login">
+		<label for="show-hide-form" class="x-btn">&#10005;</label>
+		<div class="logo">
+			<img src="https://img.icons8.com/emoji/48/000000/man-cook.png"/>
+		</div>
+		<div class="text-center mt-4 name"></div>
+		<form class="p-3 mt-3" action="login.php" method="post">
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input
+					type="text"
+					name="userName"
+					id="contactNumber"
+					placeholder="Contact Number"
+				/>
+			</div>
+			<div class="form-field d-flex align-items-center">
+				<span class="fas fa-key"></span>
+				<input
+					type="password"
+					name="password"
+					id="pwd"
+					placeholder="Password"
+				/>
+			</div>
+			<button class="btn mt-3">Login</button>
+		</form>
+		<div class="text-center fs-6">
+			<a href="#">Forget password?</a> or <a href="chef-signup.html">Sign up</a>
+		</div>
+	</div>
+<!-- End of Login modal box -->
+
+<!-- Sign up modal box -->
+<input type="checkbox" id="show-hide-sign-form" hidden>
+<div id="sign-up-overlay" onclick="hideSignUpForm()">
+</div>
+<div class="signupFrm" id="sign-up">
+	<form action="register.php" method="post" class="form">
+		<label for="show-hide-sign-form" class="x-btn">&#10005;</label>
+		<div class="inputContainer">
+			<input type="text" class="input" required name="firstname">
+			<label for="firstname" class="label">Firstname</label>
+		</div>
+
+		<div class="inputContainer">
+			<input type="text" class="input" required name="lastname">
+			<label for="lastname" class="label">Lastname</label>
+		</div>
+
+		<div class="inputContainer">
+			<input type="text" class="input" required name="address">
+			<label for="address" class="label">Address</label>
+		</div>
+
+		<div class="inputContainer">
+			<input type="text" class="input" required name="ph_number">
+			<label for="ph_number" class="label">Contact Number</label>
+		</div>
+		
+		<div class="inputContainer">
+			<input type="email" class="input" required name="email">
+			<label for="email" class="label">Email</label>
+		</div>
+
+		<div class="inputContainer">
+			<select name="type" class="form-select">
+				<option selected value="0">Consumer</option>
+				<option value="1">Chef</option>
+			</select>
+		</div>
+
+		<div class="inputContainer">
+			<input type="password" class="input" required name="password">
+			<label for="password" class="label">Password</label>
+		</div>
+
+		<div class="inputContainer">
+			<input type="password" class="input" required name="password1">
+			<label for="password1" class="label">Confirm Password</label>
+		</div>
+
+		<input type="submit" class="submitBtn" name="user-sign-up" value="register">
+	</form>
+</div>
+<!-- End of Signup modal box -->
+
 	<!-- nav-bar  -->
 	<div class="container">
 		<header class="d-flex flex-wrap align-items-center justify-content-around justify-content-md-between py-3  border-bottom">
@@ -38,8 +134,8 @@
 					height="25" loading="lazy">
 			</a>
 			<div class="col-md-3 text-end">
-				<button type="button" class="btn btn-outline-success me-2">Login</button>
-				<button type="button" class="btn btn-outline-danger">Sign-up</button>
+				<label type="button" class="btn btn-outline-success me-2" for="show-hide-form">Log in</label>
+				<label type="button" class="btn btn-outline-danger" for="show-hide-sign-form">Sign up</label>
 			</div>
 		</header>
 	</div>
