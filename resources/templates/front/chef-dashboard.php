@@ -69,7 +69,6 @@
 						<img class="bd-placeholder-img card-img-top" width="100%" height="225" src="assets/img/menu/<?php echo $menu['id'] . '_0.jpg';?>">
 						<div class="card-body">
 							<h3><?php echo $menu['name'];?></h3>
-							<p class="card-text"><?php echo $menu['description'];?></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
 									<button type="button" class="btn btn-sm btn-outline-secondary">View</button>

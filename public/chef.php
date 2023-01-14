@@ -35,16 +35,11 @@
 	else{
 		$nav_page[0][1] = 'active';
 	}
-
-	$query = query("SELECT * FROM users WHERE id='{$_SESSION['user']}'");
-	confirm($query);
-	$row = mysqli_fetch_array($query);
-	$firstname = $row['firstname'];
-	$lastname = $row['lastname'];
+	get_user_info();
 
 	require('../resources/templates/front/header.php');
 ?>
-	<title><?php echo $firstname . $lastname; ?> Dashboard -- Yummy Tummy</title>
+	<title><?php echo $_SESSION['firstname'] . $_SESSION['lastname']; ?> Dashboard -- Yummy Tummy</title>
 
 	<link href="css/dashboard.css" rel="stylesheet">
 	<style>

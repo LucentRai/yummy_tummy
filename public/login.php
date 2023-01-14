@@ -17,7 +17,7 @@
 		if (password_verify($user_password, $row['password_hash'])){
 			$_SESSION['user'] = $row['id'];
 			if($row['type'] == CLIENT_USER){
-				redirect("user.php");
+				redirect("customer.php");
 			}
 			else{
 				redirect("chef.php");
