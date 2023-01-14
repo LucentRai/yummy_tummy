@@ -17,10 +17,10 @@
 		if (password_verify($user_password, $row['password_hash'])){
 			$_SESSION['user'] = $row['id'];
 			if($row['type'] == CLIENT_USER){
-				redirect("user.php?u_id={$_SESSION['user']}");
+				redirect("user.php");
 			}
 			else{
-				redirect("chef.php?u_id={$_SESSION['user']}");
+				redirect("chef.php");
 			}
 		}
 	}
