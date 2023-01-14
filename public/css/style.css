@@ -1,0 +1,21 @@
+
+/* Features Section */
+
+#features{
+    padding: 7% 14%;
+}
+
+.feature-box{
+    text-align: center;
+    padding: 5%;
+}
+
+.icon{
+   color: #DC3535;
+   margin-bottom: 1.5rem;
+}
+
+.icon:hover{
+    color:#FD841F ;
+    cursor: pointer;
+}
