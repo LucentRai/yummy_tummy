@@ -8,6 +8,11 @@ body {
   vertical-align: text-bottom;
 }
 
+.logo {
+  max-width: 50px;
+  margin-right: .5rem;
+}
+
 /*
  * Sidebar
  */
