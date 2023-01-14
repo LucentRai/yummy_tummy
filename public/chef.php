@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Lucent Rai">
-	<title>Username Dashboard -- Yummy Tummy</title>
+<?php
+	require_once("../resources/config.php");
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	if(!isset($_SESSION['user'])){
+		redirect("login.php");
+	}
 
-	<!-- Favicons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-	<link rel="manifest" href="assets/favicon/site.webmanifest">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#ffffff">
+	$query = query("SELECT * FROM users WHERE id='{$_SESSION['user']}'");
+	confirm($query);
+	$row = mysqli_fetch_array($query);
+	$firstname = $row['firstname'];
+	$lastname = $row['lastname'];
+
+	require('../resources/templates/front/header.php');
+?>
+	<title><?php echo $firstname . $lastname; ?> Dashboard -- Yummy Tummy</title>
 
 	<link href="css/dashboard.css" rel="stylesheet">
 	<style>
@@ -33,7 +31,6 @@
 			}
 		}
 	</style>
-	<script src="https://kit.fontawesome.com/f4e0ff58d6.js" crossorigin="anonymous"></script>
 </head>
 <body>		
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -44,7 +41,7 @@
 	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 	<div class="navbar-nav">
 		<div class="nav-item text-nowrap">
-			<a class="nav-link px-3" href="#">Sign out <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+			<a class="nav-link px-3" href="../resources/templates/back/logout.php">Sign out <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
 		</div>
 	</div>
 </header>
@@ -104,7 +101,7 @@
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 				<h1 class="h2">Dashboard</h1>
-				<p class="fw-light">Welcome Username!</p>
+				<p class="fw-light">Welcome <?php echo $firstname; ?>!</p>
 				<div class="btn-toolbar mb-2 mb-md-0">
 					<div class="btn-group me-2">
 						<button type="button" class="btn btn-sm btn-outline-secondary">Subscribers</button>

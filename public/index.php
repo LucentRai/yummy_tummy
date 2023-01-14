@@ -1,39 +1,12 @@
 <?php
 	require_once("../resources/config.php");
-
+	require('../resources/templates/front/header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Yummy Tummy</title>
 
-	<!-- Favicons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-	<link rel="manifest" href="assets/favicon/site.webmanifest">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#ffffff">
-
-	<!-- css  -->
-	<link href="./css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="./css/chef-login.css" />
   <link rel="stylesheet" href="./css/chef-signup.css">
 
-	<!-- bootstrap css -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-	<!-- bootstrap icons  -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-	<!-- fontawesome  -->
-	<script src="https://kit.fontawesome.com/3a5f8e8284.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
 <!-- Login modal box -->
 	<input type="checkbox" id="show-hide-form" hidden>
@@ -49,10 +22,9 @@
 			<div class="form-field d-flex align-items-center">
 				<span class="far fa-user"></span>
 				<input
-					type="text"
-					name="userName"
-					id="contactNumber"
-					placeholder="Contact Number"
+					type="number"
+					name="ph_number"
+					placeholder="Phone Number"
 				/>
 			</div>
 			<div class="form-field d-flex align-items-center">
@@ -60,11 +32,10 @@
 				<input
 					type="password"
 					name="password"
-					id="pwd"
 					placeholder="Password"
 				/>
 			</div>
-			<button class="btn mt-3">Login</button>
+			<input type="submit" class="btn mt-3" name="user-login" value="Log in">
 		</form>
 		<div class="text-center fs-6">
 			<a href="#">Forget password?</a> or <a href="chef-signup.html">Sign up</a>
@@ -121,7 +92,7 @@
 			<label for="password1" class="label">Confirm Password</label>
 		</div>
 
-		<input type="submit" class="submitBtn" name="user-sign-up" value="register">
+		<input type="submit" class="submitBtn" name="user-sign-up" value="Sign Up">
 	</form>
 </div>
 <!-- End of Signup modal box -->
@@ -134,8 +105,28 @@
 					height="25" loading="lazy">
 			</a>
 			<div class="col-md-3 text-end">
+			<?php
+				if(!$is_logged_in){
+			?>
 				<label type="button" class="btn btn-outline-success me-2" for="show-hide-form">Log in</label>
 				<label type="button" class="btn btn-outline-danger" for="show-hide-sign-form">Sign up</label>
+			<?php
+				}
+				else{
+					$query = query("SELECT * FROM users WHERE id='{$_SESSION['user']}'");
+					confirm($query);
+					$user = mysqli_fetch_array($query);
+					if($user['type'] == CLIENT_USER){
+						$link = 'user.php?id=' . $_SESSION['user'];
+					}
+					else{
+						$link = 'chef.php?id=' . $_SESSION['user'];
+					}
+					echo <<<DELIMETER
+				<a class="link-info" href="{$link}">{$user['firstname']}</a>
+				DELIMETER;
+				}
+			?>
 			</div>
 		</header>
 	</div>
@@ -189,7 +180,6 @@
 		<h1 class="display-5 fw-bold">About Us</h1>
 		<div class="col-lg-6 mx-auto">
 		  <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-		  
 		</div>
 	  </div>
 
@@ -247,7 +237,7 @@
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 			<div class="col-md-4 d-flex align-items-center">
 				
-				<span class="mb-3 mb-md-0 text-muted">© 2022 Yummy Tummy</span>
+				<span class="mb-3 mb-md-0 text-muted">© 2023 Y-ENGINE</span>
 			</div>
 
 			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
