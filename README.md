@@ -1,4 +1,4 @@
-(/public/assets/favicon/mstile-310x310.png)
+![favicon](https://user-images.githubusercontent.com/20392986/212522384-b93225a1-e76f-4987-ab1b-45d7dd8f547f.svg)
 
 <h3>Yummy Tummy<br/></h3>
 <i>A digital interface to enrich our communitites.</i><br/><hr>
@@ -39,7 +39,7 @@ We hope for this to contribute as:
   <ul>
   <li>Lucent Rai</li>
   <li>Ujjwal Dhakal</li>
-  </li>Nischal Khanal</li>
+  <li>Nischal Khanal</li>
   <li>Gajananda M Adhikari</li>
   </ul>
   
