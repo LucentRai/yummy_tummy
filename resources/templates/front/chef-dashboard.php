@@ -19,6 +19,13 @@
 	confirm($orders_query);
 ?>
 <h2 id="orders-title">Current Orders</h2>
+<?php
+	$num = mysqli_num_rows($orders_query);
+	if($num == 0){
+		echo '<p class="fs-3" style="color:var(--bs-red)">None</p>';	
+	}
+	else {
+?>
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
 		<thead>
@@ -27,30 +34,31 @@
 				<th scope="col">Number</th>
 				<th scope="col">Customer Name</th>
 				<th scope="col">Address</th>
-				<th scope="col">Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<?php
+					while($orders = mysqli_fetch_array($orders_query)){
+						$menu_name_query = query("SELECT name FROM menu WHERE id='{$orders['menu_id']}';");
+						confirm($menu_name_query);
+						$menu_name = mysqli_fetch_array($menu_name_query);
+					?>
+				<tr>
+					<td scope="col"><?php echo $menu_name['name'];?></td>
+					<td scope="col"><?php echo $orders['number'];?></td>
+					<td scope="col"><?php echo $orders['firstname'] . ' ' . $orders['lastname'];?></td>
+					<td scope="col"><?php echo $orders['address'];?></td>
+				</tr>
 				<?php
-				while($orders = mysqli_fetch_array($orders_query)){
-					$menu_name_query = query("SELECT name FROM menu WHERE id='{$orders['menu_id']}';");
-					confirm($menu_name_query);
-					$menu_name = mysqli_fetch_array($menu_name_query);
-				?>
-				<td scope="col"><?php echo $menu_name['name'];?></td>
-				<td scope="col"><?php echo $orders['number'];?></td>
-				<td scope="col"><?php echo $orders['firstname'] . ' ' . $orders['lastname'];?></td>
-				<td scope="col"><?php echo $orders['address'];?></td>
-				<td scope="col"><button class="btn primary-btn"><i class="fa-solid fa-trash"></i></button></td>
-				<?php
-				}
-				?>
-			</tr>
+					}
+			?>
 		</tbody>
 	</table>
 </div>
 <!-- End of Orders -->
+<?php
+	}	// End of else statement
+?>
 
 <!-- Menu Album -->
 <div class="album py-5 bg-light">
@@ -61,25 +69,31 @@
 				$query = query("SELECT * FROM menu WHERE user_id='{$_SESSION['user']}'");
 				confirm($query);
 
-				while($menu = mysqli_fetch_array($query)){
-					?>
-					<div class="col">
-					<div class="card shadow-sm">
-						<img class="bd-placeholder-img card-img-top" width="100%" height="225" src="assets/img/menu/<?php echo $menu['id'] . '_0.jpg';?>">
-						<div class="card-body">
-							<h3><?php echo $menu['name'];?></h3>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+				$num = mysqli_num_rows($query);
+				if($num == 0){
+					echo '<p class="fs-3" style="color:var(--bs-red)">None</p>';	
+				}
+				else {
+					while($menu = mysqli_fetch_array($query)){
+						?>
+						<div class="col">
+							<div class="card shadow-sm">
+								<img class="bd-placeholder-img card-img-top" width="100%" height="225" src="assets/img/menu/<?php echo $menu['id'] . '_0.jpg';?>">
+								<div class="card-body">
+									<h3><?php echo $menu['name'];?></h3>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+											<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+										</div>
+										<small class="text-muted">Rs. <?php echo $menu['price'];?></small>
+									</div>
 								</div>
-								<small class="text-muted">Rs. <?php echo $menu['price'];?></small>
 							</div>
 						</div>
-					</div>
-				</div>
-			<?php
-				}
+					<?php
+					}	// end of While statement
+				}	// end of else statement
 			?>
 		</div>
 	</div>
@@ -105,17 +119,22 @@
 		</thead>
 		<tbody>
 			<?php
-				for($i = 1; $subscription_info = mysqli_fetch_array($subscription_query); $i++){
-			?>
-			<tr>
-				<td><?php echo $i; ?></td>
-				<td><?php echo $subscription_info['firstname'];?></td>
-				<td><?php echo $subscription_info['address'];?></td>
-				<td><?php echo $subscription_info['ph_number'];?></td>
-				<td><?php echo '2023 February 14' ;?></td>
-			</tr>
-			<?php
+				if(mysqli_num_rows($subscription_query) == 0){
+					echo '<tr><td colspan="5"><p class="fs-3" style="color:var(--bs-red)">No Subscribers Yet</p></td></tr>';
 				}
+				else {
+					for($i = 1; $subscription_info = mysqli_fetch_array($subscription_query); $i++){
+			?>
+					<tr>
+						<td><?php echo $i; ?></td>
+						<td><?php echo $subscription_info['firstname'];?></td>
+						<td><?php echo $subscription_info['address'];?></td>
+						<td><?php echo $subscription_info['ph_number'];?></td>
+						<td><?php echo '2023 February 14' ;?></td>
+					</tr>
+			<?php
+					}	// end of for loop
+				}	// end of else statement
 			?>
 		</tbody>
 	</table>

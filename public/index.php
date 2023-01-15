@@ -136,9 +136,8 @@
 		<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
 
 			<div class="col-lg-6">
-				<h1 class="display-5 fw-bold lh-1 mb-3">Get healthy food in reach community chief !</h1>
+				<h1 class="display-5 fw-bold lh-1 mb-3">Enriching Our Communities</h1>
 				<p class="lead my-4">Enjoy homely and healthy food while enriching housewife and home-chef with opportunity to earn through their cooking skills.</p>
-
 			</div>
 			<div class="col-10 col-sm-8 col-lg-6">
 				<img src="./assets/img/65648892.png" class="d-block mx-lg-auto img-fluid" alt="yummy tummy" width="700"
@@ -179,7 +178,7 @@
 		
 		<h1 class="display-5 fw-bold">About Us</h1>
 		<div class="col-lg-6 mx-auto">
-		  <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+		  <p class="lead mb-4">We are contributing for the sustainable community by creating a justified and valid cashflow within the community. The homechef (housewife/husband) who cooks for the family can cook for extra one or two people without much expense while maintaining the same quality for the consumer as for the family. Similarly, the one who is busy or unable to cooks doesn't have to rely on fast food and expensive expenditure in restaurants. Instead they can place an order for the house-cooked healthy and homely food. As for the young studetns and hustlers who are interested in earning money, investing and saving, they have the perfect opportunity to raise money with their work of delivery/serving.</p>
 		</div>
 	  </div>
 

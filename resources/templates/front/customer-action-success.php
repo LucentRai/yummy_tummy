@@ -4,17 +4,24 @@
 	$user = mysqli_fetch_array($user);
 
 	if($_GET['action'] == 'subscribe'){
-		$query = query("INSERT INTO subscription (user_id, chef_id, duration, menu_id) VALUES ('{$_SESSION['user']}', '{$chef_id}', 1, '{$_GET['menu_id']}');");
+		$subs_id = uuid();
+		$query = query("INSERT INTO subscription (subs_id, user_id, chef_id, duration, menu_id) VALUES ('{$subs_id}', '{$_SESSION['user']}', '{$chef_id}', 1, '{$_GET['menu_id']}');");
+		confirm($query);
+		$query = query("INSERT INTO subs_notice (user_id, subs_id) VALUES ('{$_SESSION['user']}', '{$subs_id}')");
 		confirm($query);
 		$h1 = 'Successfully subscribed ' . $menu['name'];
 		$h4_price = $menu['price'] * 30 - (SUB_DISCOUNT * $menu['price']);
 	}
 	else{
-		$query = query("INSERT INTO orders (user_id, chef_id, menu_id, number) VALUES ('{$_SESSION['user']}', '{$chef_id}', '{$_GET['menu_id']}', 1);");
+		$orders_id = uuid();
+		$query = query("INSERT INTO orders (orders_id, user_id, chef_id, menu_id, number) VALUES ('{$orders_id}', '{$_SESSION['user']}', '{$chef_id}', '{$_GET['menu_id']}', 1);");
+		confirm($query);
+		$query = query("INSERT INTO order_notice (user_id, order_id) VALUES ('{$_SESSION['user']}', '{$orders_id}')");
 		confirm($query);
 		$h1 = 'Successfully ordered ' . $menu['name'];
 		$h4_price = $menu['price'];
 	}
+	$query = query("UPDATE users SET notifications = notifications + 1 WHERE users.id = '{$menu['user_id']}'");
 ?>
 
 <h1><?php echo $h1; ?> <i class="fa-solid fa-square-check"></i></h1>

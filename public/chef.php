@@ -9,8 +9,9 @@
 		array("dashboard", ''),
 		array("menu", ''),
 		array("orders", ''),
+		array("subscription", ''),
 		array("profile", ''),
-		array("reports", '')
+		array("notifications", '')
 	);
 
 	if(isset($_GET['nav'])){
@@ -27,6 +28,9 @@
 			case $nav_page[4][0]:
 				$nav_page[4][1] = 'active';
 				break;
+			case $nav_page[5][0]:
+				$nav_page[5][1] = 'active';
+				break;
 			default:
 				$nav_page[0][1] = 'active';
 				break;
@@ -35,6 +39,12 @@
 	else{
 		$nav_page[0][1] = 'active';
 	}
+
+	$query = query("SELECT notifications FROM users WHERE id='{$_SESSION['user']}';");
+	confirm($query);
+	$notification_count = mysqli_fetch_array($query);
+	$notification_count = $notification_count['notifications'];
+
 	get_user_info();
 
 	require('../resources/templates/front/header.php');
@@ -97,14 +107,20 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link <?php echo $nav_page[3][1];?>" href="chef.php?nav=<?php echo $nav_page[3][0];?>">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+							Subscription
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php echo $nav_page[4][1];?>" href="chef.php?nav=<?php echo $nav_page[4][0];?>">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
 							Profile
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link <?php echo $nav_page[4][1];?>" href="chef.php?nav=<?php echo $nav_page[4][0];?>">
+						<a class="nav-link <?php echo $nav_page[5][1];?>" href="chef.php?nav=<?php echo $nav_page[5][0];?>">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-							Reports
+							Notifications <?php if($notification_count != 0){ echo '<b style="color:var(--bs-red)">(' . $notification_count . ')</b>'; }?>
 						</a>
 					</li>
 				</ul>
@@ -125,6 +141,9 @@
 						break;
 					case $nav_page[4][0]:
 						include_once('../resources/templates/front/chef-' . $nav_page[4][0] . '.php');
+						break;
+					case $nav_page[5][0]:
+						include_once('../resources/templates/front/chef-' . $nav_page[5][0] . '.php');
 						break;
 					default:
 						include_once('../resources/templates/front/chef-' . $nav_page[0][0] . '.php');

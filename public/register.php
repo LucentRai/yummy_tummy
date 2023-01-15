@@ -17,12 +17,11 @@ if (isset($_POST['user-sign-up'])){
   $lastname = escape_string($_POST['lastname']);
 	$email = escape_string($_POST['email']);
   $address = escape_string($_POST['address']);
-  $plus_code = ' ';
   $type = $_POST['type'];
 	$password = escape_string($_POST['password']);
 	$pwd_hash = password_hash($password, PASSWORD_DEFAULT);
 	
-	$query = query("INSERT INTO users (id, firstname, lastname, ph_number, email, address, plus_code, type, password_hash) VALUES ('{$id}', '{$firstname}', '{$lastname}', '{$ph_number}', '{$email}', '{$address}', '{$plus_code}', '{$type}', '{$pwd_hash}')");
+	$query = query("INSERT INTO users (id, firstname, lastname, ph_number, email, address, type, password_hash, notifications) VALUES ('{$id}', '{$firstname}', '{$lastname}', '{$ph_number}', '{$email}', '{$address}', '{$type}', '{$pwd_hash}', 0)");
 	confirm($query);
 
 	$_SESSION['user'] = $id;
