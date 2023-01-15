@@ -43,8 +43,18 @@
 		</header>
 	</div>
 
+	<!-- search -->
 	<div class="container my-4">
-		<h1>Avilable Foods</h1>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <h1>Avilable Foods</h1>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+
 		<!-- Menu Album -->
 		<div class="album py-5 bg-light">
 			<div class="container">
