@@ -34,10 +34,12 @@ We hope for this to contribute as:
   <br/><hr>
   
   <h5> About US </h5>
-  We are Y-ENGINE engineering students from Cosmos College of Management & Technology who came together for the #Yatra 4.0 24 hour #Hackathon.
+  We are Y-ENGINE engineering students from Cosmos College of Management & Technology who came together for the #Yatra 4.0 24 hour #Hackathon. <br/>
   Meet our Team:
-  Lucent Rai
-  Ujjwal Dhakal
-  Nischal Khanal
-  Gajananda M Adhikari
+  <ul>
+  <li>Lucent Rai</li>
+  <li>Ujjwal Dhakal</li>
+  </li>Nischal Khanal</li>
+  <li>Gajananda M Adhikari</li>
+  </ul>
   
