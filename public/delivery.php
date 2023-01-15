@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+	require_once("../resources/config.php");
+	if(!$is_logged_in){
+		redirect("login.php");
+	}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery Jobs</title>
-
-    <!-- css  -->
-    <!-- <link href="./css/style.css" rel="stylesheet"> -->
-    <link href="./css/delivery-baccha.css" rel="stylesheet">
-
-    <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    <!-- bootstrap icons  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-    <!-- fontawesome  -->
-    <script src="https://kit.fontawesome.com/3a5f8e8284.js" crossorigin="anonymous"></script>
+	require('../resources/templates/front/header.php');
+?>
 </head>
 
 <body>

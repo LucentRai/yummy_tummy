@@ -4,7 +4,7 @@
  * Date: 2023-01-14
  */
 
-$upload_directory = "uploads";
+// $upload_directory = "uploads";
 
 /************************ HELPER FUNCTIONS ************************/
 function last_id(){

@@ -27,7 +27,15 @@ if (isset($_POST['user-sign-up'])){
 
 	$_SESSION['user'] = $id;
 
-	redirect("user.php?u_id={$id}");
+	if($type == CLIENT_CHEF){
+		redirect('chef.php');
+	}
+	else if($type == CLIENT_USER){
+		redirect('customer.php');
+	}
+	else {
+		redirect('delivery.php');
+	}
 }
 ?>
 <!DOCTYPE html>
