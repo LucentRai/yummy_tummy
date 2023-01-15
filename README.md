@@ -1,4 +1,4 @@
-![favicon](https://user-images.githubusercontent.com/20392986/212522384-b93225a1-e76f-4987-ab1b-45d7dd8f547f.svg)
+![mstile-144x144](https://user-images.githubusercontent.com/20392986/212522404-9e0c996a-e491-4196-9ccf-62fc198480f0.png)
 
 <h3>Yummy Tummy<br/></h3>
 <i>A digital interface to enrich our communitites.</i><br/><hr>
