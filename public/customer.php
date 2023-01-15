@@ -51,41 +51,18 @@
 		if(!isset($_GET['action'])){
 		?>
 
-		<!-- Subscription info -->
-		<h2 id="subscribers-title">Subscription Details</h2>
-		<div class="table-responsive">
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr>
-						<th scope="col">S.N.</th>
-						<th scope="col">Name</th>
-						<th scope="col">Cook</th>
-						<th scope="col">Price</th>
-						<th scope="col">Expiry Date</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					for($i = 1; $subscription_info = mysqli_fetch_array($subscription_query); $i++){
-						$food_query = query("SELECT name FROM menu WHERE id='{$subscription_info['menu_id']}'");
-						confirm($food_query);
-						$subscribed_food = mysqli_fetch_array($food_query);
-					?>
-					<tr>
-						<td><?php echo $i; ?></td>
-						<td><?php echo $subscribed_food['name'];?></td>
-						<td><?php echo $subscription_info['firstname'] . ' ' . $subscription_info['lastname']; ?></td>
-						<td><?php echo $subscription_info['price'];?></td>
-						<td><?php echo '2023 February 14';?></td>
-					</tr>
-					<?php
-					}
-					?>
-				</tbody>
-			</table>
-		</div>
-		<!-- End of Subscriber info -->
-		<h1>Avilable Foods</h1>
+	<!-- search -->
+	<div class="container my-4">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <h1>Avilable Foods</h1>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+
 		<!-- Menu Album -->
 		<div class="album py-5 bg-light">
 			<div class="container">
